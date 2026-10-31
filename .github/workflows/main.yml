@@ -1,0 +1,56 @@
+name: Build APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare project
+        run: |
+          mkdir proj
+          if ls ./*.zip >/dev/null 2>&1; then
+            unzip -q "$(ls ./*.zip | head -n1)" -d proj
+          else
+            rsync -a --exclude=proj --exclude=.git --exclude=.github ./ proj/
+          fi
+          GRADLE_FILE=$(find proj -name settings.gradle.kts | head -n1)
+          if [ -z "$GRADLE_FILE" ]; then
+            echo "settings.gradle.kts not found. Files in repo:"
+            ls -R . | head -60
+            exit 1
+          fi
+          PROJ_DIR=$(dirname "$GRADLE_FILE")
+          echo "PROJ=$PROJ_DIR" >> "$GITHUB_ENV"
+          # Optional: your own logo. Upload a square PNG named logo.png to the repo root.
+          if [ -f logo.png ]; then
+            cp logo.png "$PROJ_DIR/app/src/main/res/drawable/app_logo.png"
+            echo "Custom logo.png applied"
+          fi
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Accept Android SDK licenses
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: Build debug APK
+        working-directory: ${{ env.PROJ }}
+        run: gradle assembleDebug --no-daemon --stacktrace
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SmmPaySync-APK
+          path: ${{ env.PROJ }}/app/build/outputs/apk/debug/app-debug.apk
