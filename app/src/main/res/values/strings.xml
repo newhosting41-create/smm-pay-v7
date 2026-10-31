@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SMM Payment Sync</string>
+    <string name="nav_open">Open menu</string>
+    <string name="nav_close">Close menu</string>
+    <string name="website_name">rentalbd.com</string>
+    <string name="website_url">https://rentalbd.com</string>
+</resources>

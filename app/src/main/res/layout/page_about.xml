@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_hero"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <ImageView
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:contentDescription="Logo"
+                android:scaleType="fitCenter"
+                android:src="@drawable/app_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/app_name"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/website_name"
+                android:textColor="#E6FFFFFF"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvVersion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="#CCFFFFFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="এই অ্যাপ কী করে\nআপনার ফোনে আসা আসল bKash &quot;You have received&quot; মেসেজ থেকে TrxID, Amount ও সময় বের করে নিরাপদভাবে (HTTPS + Device Token + HMAC Signature) rentalbd.com-এর সার্ভারে পাঠায়।\n\nঅ্যাপ নিজে কোনো ক্লায়েন্টের ব্যালেন্স বদলায় না। ব্যালেন্স যোগ করার সিদ্ধান্ত সার্ভার নেয়।\n\nস্ট্যাটাস\n• PENDING: এখনো সার্ভারে যায়নি (নেট নেই বা সার্ভারে সমস্যা)\n• SYNCED: সার্ভারে পৌঁছেছে, ক্লায়েন্টের ক্লেইমের অপেক্ষায়\n• USED ON WEBSITE: ক্লায়েন্ট ওয়েবসাইটে ব্যবহার করেছে\n• UNDER REVIEW: সার্ভার যাচাইয়ের জন্য আটকে রেখেছে\n• REJECTED / FAILED: সার্ভার গ্রহণ করেনি বা Token/Secret ভুল"
+                android:textColor="@color/text_dark"
+                android:textSize="13sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="প্রাইভেসি\n• শুধু bKash-এর অফিসিয়াল Received মেসেজ প্রক্রিয়া হয়। OTP, ব্যক্তিগত ও প্রচারণামূলক SMS উপেক্ষা করা হয় এবং সংরক্ষণ হয় না।\n• সার্ভারে যায়: TrxID, টাকার পরিমাণ, প্রেরকের নম্বর, সময়।\n• সার্ভারে পৌঁছানোর পর ফোনে মেসেজের মূল লেখা মুছে ফেলা হয়।\n• Token ও Secret ফোনে এনক্রিপ্টেড অবস্থায় রাখা হয়।"
+                android:textColor="@color/text_dark"
+                android:textSize="13sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnWebsite"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_margin="5dp"
+            android:text="Visit rentalbd.com"
+            app:cornerRadius="14dp" />
+    </LinearLayout>
+</ScrollView>
